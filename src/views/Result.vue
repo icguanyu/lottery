@@ -1,5 +1,8 @@
 <template>
   <div id="all">
+    <div class="logo">
+      <img src="@/assets/img/lottodemo-03.png" alt="">
+    </div>
     <div class="lottery">
       <div class="ticket">
         <div class="logo">
@@ -45,24 +48,6 @@ const axios = require("axios");
 export default {
   name: "Result",
   methods: {
-    select(item) {
-      if (this.selected.length < 6) {
-        item.select = !item.select;
-      } else {
-        alert("最多只能選擇6個號碼");
-      }
-    },
-    go() {
-      let now = new Date();
-      this.date = `${now.getFullYear()}/${now.getMonth() +
-        1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
-      this.$router.push('/Result')
-    },
-    reset() {
-      this.number.forEach(item => {
-        item.select = false;
-      });
-    }
   },
   computed: {
     selected() {
@@ -72,119 +57,13 @@ export default {
       return this.$store.state.date
     }
   },
+  created(){
+    //避免出現沒選號碼的結果,自動導回首頁
+    let selected = this.$store.state.selected.length
+    if( selected < 6) {
+      this.$router.push('/')
+    }
+    
+  }
 };
 </script>
-
-<style scoped lang="scss" scoped>
-$primary: #ffd985;
-$second: #ffcf57;
-$third: #ffb600;
-$orange: #f76b40;
-$green: #60bfac;
-
-body,
-html {
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  font-family: 微軟正黑體;
-  //overflow: hidden;
-}
-#all {
-  margin-top: 60px;
-  .logo {
-    width: 480px;
-    margin: 0 auto;
-    img {
-      width: 100%;
-    }
-  }
-  .lottery{
-    display: flex;
-    width: 1080px;
-    padding: 10px;
-    .ticket{
-      background: #fff;
-      position: relative;
-      flex:1;
-      border: .5px solid #ddd;
-      padding: 20px;
-      .logo{
-        width: 100%;
-      }
-      .code{
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 18px;
-      }
-      .col{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        
-      }
-      .title{
-        background: $orange;
-        color: #fff;
-        text-align: center;
-        padding: 3px 30px;
-        border-radius: 5px;
-      }
-      .row{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 5px 0;
-        .info{
-          font-size: 20px;
-          padding: 15px 0;
-        }
-        .green{
-          background: $green;
-        }
-      }
-      .mynumber{
-        background: $primary;
-        margin: 15px 0;
-        display: flex;
-        height: 90px;
-        justify-content: space-around;
-        align-items: center;
-        padding: 10px;
-        box-sizing: border-box;
-        border-radius: 5px;
-        .number{
-          background: #fff;
-          border-radius: 3px;
-          padding: 10px 8px;
-          font-size: 18px;
-          margin: 0 5px;
-          font-size: 26px;
-          font-weight: bold;
-        }
-      }
-      .unicode{
-        padding: 30px 0;
-        background: url(../assets/img/lottodemo-06.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
-      &:after{
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 50px;
-        bottom: -25px;
-        left: 0;
-        background: url(../assets/img/lottodemo-07.png);
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
-    }
-    .result{
-      flex:2
-    }
-  }
-}
-</style>
-

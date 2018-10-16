@@ -6,6 +6,7 @@
 
 <style lang="scss">
 @import './assets/scss/_normalize';
+@import './assets/scss/all.scss';
 @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
 body,
 html {

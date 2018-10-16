@@ -13,12 +13,12 @@ html {
   height: 100vh;
   justify-content: center;
   font-family: 微軟正黑體;
-  //overflow: hidden;
+  overflow: hidden;
 }
 #all {
-  margin-top: 60px;
+  margin-top: 40px;
   .logo {
-    width: 480px;
+    width: 280px;
     margin: 0 auto;
     img {
       width: 100%;
@@ -27,7 +27,7 @@ html {
   .card {
     position: relative;
     animation: fadeIn 1s ease-in-out;
-    width: 480px;
+    width: 460px;
     padding: 20px;
     margin: 20px auto;
     box-sizing: border-box;
@@ -44,7 +44,7 @@ html {
       transform: rotate(45deg);
     }
     .title {
-      width: 80%;
+      width: 70%;
       margin: 0 auto;
       border-bottom: 2px solid #fff;
       img {
@@ -54,16 +54,20 @@ html {
     .numbers {
       position: relative;
       display: flex;
+      justify-content: space-around;
       flex-wrap: wrap;
       margin-top: 20px;
+      margin-bottom: 10px;
       .number {
         position: relative;
         cursor: pointer;
-        font-size: 24px;
+        font-size: 20px;
+        font-weight: 900;
+        color: #333;
         background: #fff;
         margin: 5px;
         border-radius: 3px;
-        padding: 12px;
+        padding: 10px;
         transition: all 0.2s;
         &:hover {
           background: $third;
@@ -78,7 +82,7 @@ html {
         left: 0;
         width: 100%;
         height: 100%;
-        background: url(../img/draw.png);
+        background: url('./assets/img/draw.png');
         background-repeat: no-repeat;
         background-size: contain;
         opacity: 0.8;
@@ -87,7 +91,10 @@ html {
     .mynumber {
       position: relative;
       background: #fff;
+      height: 60px;
       padding: 15px 10px;
+      align-items: center;
+      display: flex;
       margin: 5px;
       box-sizing: border-box;
       border-radius: 5px;
@@ -107,6 +114,7 @@ html {
       * {
         cursor: pointer;
         flex: 1;
+        font-size: 20px;
         text-align: center;
         padding: 8px 0;
         margin: 5px;
@@ -123,7 +131,7 @@ html {
   }
   .lottery{
     display: flex;
-    width: 1080px;
+    width: 960px;
     padding: 10px;
     .ticket{
       background: #fff;
@@ -187,7 +195,7 @@ html {
       }
       .unicode{
         padding: 30px 0;
-        background: url(../img/lottodemo-06.png);
+        background: url('./assets/img/lottodemo-06.png');
         background-size: contain;
         background-repeat: no-repeat;
       }
@@ -198,7 +206,7 @@ html {
         height: 50px;
         bottom: -25px;
         left: 0;
-        background: url(../img/lottodemo-07.png);
+        background: url('./assets/img/lottodemo-07.png');
         background-size: cover;
         background-repeat: no-repeat;
       }

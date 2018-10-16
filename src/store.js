@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import vuex from 'vuex'
 import axios from 'axios'
+import router from './router'
+
 Vue.use(vuex)
+Vue.use(router)
 
 export default new vuex.Store({
   strict: true,
@@ -17,41 +20,49 @@ export default new vuex.Store({
       })
     },
     select (context, item) {
-      if (this.state.selected.length < 6) {
-        context.commit('SELECTED', item)
-      } else {
-        alert('最多只能選擇6個號碼')
-      }
+      context.commit('SELECTED', item)
     },
     reset (context) {
       context.commit('SELECTED', '')
     },
     go (context) {
+      if (this.state.selected.length < 6) {
+        alert('還沒選滿六個號碼')
+        return
+      }
       let now = new Date()
-      let date = `
-        ${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
+      let date = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
       context.commit('DATE', date)
+      console.log(this)
+      router.push('/Result')
     }
   },
   mutations: {
     NUMBERS (state, payload) {
+      state.selected.forEach(select => {
+        let selected = payload.find(number => {
+          return number.number === select.number
+        })
+        selected.select = true
+      })
       state.numbers = payload
     },
     SELECTED (state, item) {
-      if (item) {
-        let target = state.numbers.find((number) => {
-          return number.number === item.number
-        })
-        target.select = !target.select
-        state.selected = state.numbers.filter((number) => {
-          return number.select
-        })
-      } else {
+      if (item && state.selected.length < 6) {
+        item.select = !item.select
+      } else if (item === '') {
         state.numbers.forEach((item) => {
           item.select = false
           state.selected = ''
         })
+      } else if (item.select) {
+        item.select = false
+      } else {
+        alert('超過囉')
       }
+      state.selected = state.numbers.filter((number) => {
+        return number.select
+      })
     },
     DATE (state, payload) {
       state.date = payload
