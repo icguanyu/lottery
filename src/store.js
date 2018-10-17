@@ -9,14 +9,17 @@ Vue.use(router)
 export default new vuex.Store({
   strict: true,
   state: {
+    isLoading: false,
     numbers: [],
     selected: [],
     date: ''
   },
   actions: {
     getData (context) {
+      context.commit('LOADING', true)
       axios.get('data.json').then(function (response) {
         context.commit('NUMBERS', response.data)
+        context.commit('LOADING', false)
       })
     },
     select (context, item) {
@@ -38,6 +41,9 @@ export default new vuex.Store({
     }
   },
   mutations: {
+    LOADING (state, payload) {
+      state.isLoading = payload
+    },
     NUMBERS (state, payload) {
       state.selected.forEach(select => {
         let selected = payload.find(number => {
