@@ -224,6 +224,12 @@ html {
       max-width: 480px;
       margin: 10px;
       animation: fadeIn 1s ease-in-out;
+      .title{
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: #0d264a;
+        margin-bottom: 10px;
+      }
       .display {
         background: $primary;
         padding: 10px;
@@ -233,6 +239,7 @@ html {
         justify-content: space-around;
         .number {
           background: #fff;
+          color: #333;
           padding: 15px 5px;
           margin: 5px;
           border-radius: 3px;
@@ -245,10 +252,6 @@ html {
       }
       .output {
         margin: 10px 0;
-        .title{
-          font-size: 20px;
-          margin-bottom: 15px;
-        }
         .inner{
           display: flex;
         }
@@ -298,10 +301,6 @@ html {
         display: flex;
         .item {
           flex: 1;
-          .title {
-            font-size: 20px;
-            margin-bottom: 15px;
-          }
           .sort,
           .btn {
             margin: 10px;
@@ -353,9 +352,6 @@ html {
       .congratulation{
         flex-direction: column;
         align-items: center;
-        .title{
-          font-size: 20px;
-        }
         .num_box{
           margin-top: 20px;
           padding: 15px 10px;
@@ -404,5 +400,101 @@ html {
   }
   100% {
     right: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body, html{
+    width: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+  #all{
+    margin-top: 20px;
+    .logo{
+      width: 180px;
+      margin: 0 auto;
+    }
+    .card{
+      padding: 10px;
+      margin: 0 auto;
+      width: 95%;
+      .title{
+        width: 50%;
+      }
+      .numbers{
+        justify-content: space-between;
+        margin-top: 10px;
+        .number{
+          text-align: center;
+          font-size: 20px;
+          padding: 6px;
+          margin: 5px;
+        }
+      }
+      .mynumber{
+        height: auto;
+        flex-wrap: wrap;
+      }
+      .shadow{
+        width: 100%;
+        height: 150%;
+      }
+      .btn{
+        *{
+          font-size: 16px;
+        }
+      }
+    }
+    //第二頁
+    .lottery{
+      display: block;
+      padding: 0;
+      width: 100%;
+      .ticket{
+        margin: 20px auto;
+      }
+      .result{
+        margin: 0;
+        margin-top: 30px;
+        padding: 20px 10px;
+        display: flex;
+        box-sizing: border-box;
+        .title{
+          font-size: 18px;
+          margin-bottom: 5px;
+        }
+        .display{
+          padding: 5px;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          .number{
+            font-size: 30px;
+            padding: 10px 5px;
+          }
+        }
+      }
+      .output{
+        .inner{
+          align-items: flex-start;
+          flex-direction: column;
+          .period{
+            display: none;
+          }
+          .output_number_box{
+            margin: 10px 0;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .output_number{
+              font-size: 14px;
+              margin: 5px 3px;
+            }
+          }
+        }
+      }
+      .operation{
+        flex-direction: column;
+      }
+    }
   }
 }

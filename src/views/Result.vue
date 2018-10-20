@@ -19,7 +19,7 @@
         <div class="col">
           <div class="row">
             <div class="title">★ 開獎日期 ★</div>
-            <div class="info">請點擊右方開獎</div>
+            <div class="info">請點擊開獎按鈕</div>
           </div>
           <div class="row">
             <div class="title">★ 總金額 ★</div>
@@ -39,6 +39,7 @@
         <div class="unicode"></div>
       </div>
       <div class="result">
+        <div class="title">★ 開獎區</div>
         <div class="display">
           <div class="number" v-for="(item,index) in lotto_result" :key="index">
             {{ item.num }}

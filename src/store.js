@@ -30,7 +30,7 @@ export default new vuex.Store({
     },
     go (context) {
       if (this.state.userNumber.length < 6) {
-        alert('還沒選滿六個號碼')
+        alert('必須選滿 6 個號碼。')
         return
       }
       let now = new Date()
@@ -63,7 +63,7 @@ export default new vuex.Store({
       } else if (item.select) {
         item.select = false
       } else {
-        alert('超過囉')
+        alert('不能超過 6 個號碼！')
       }
       state.userNumber = state.numbers.filter((number) => {
         return number.select
