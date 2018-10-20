@@ -3,7 +3,7 @@ $second: #ffcf57;
 $third: #ffb600;
 $orange: #f76b40;
 $green: #60bfac;
-@mixin center{
+@mixin center {
   left: 50%;
   transform: translateX(-50%);
 }
@@ -59,6 +59,7 @@ html {
       margin-top: 20px;
       margin-bottom: 10px;
       .number {
+        user-select: none;
         position: relative;
         cursor: pointer;
         font-size: 20px;
@@ -82,7 +83,7 @@ html {
         left: 0;
         width: 100%;
         height: 100%;
-        background: url('./assets/img/draw.png');
+        background: url("./assets/img/draw.png");
         background-repeat: no-repeat;
         background-size: contain;
         opacity: 0.8;
@@ -99,6 +100,7 @@ html {
       box-sizing: border-box;
       border-radius: 5px;
       p {
+        user-select: none;
         display: inline-block;
         margin: 0 5px;
         font-weight: bold;
@@ -129,55 +131,55 @@ html {
       }
     }
   }
-  .lottery{
+  .lottery {
     display: flex;
     width: 860px;
     justify-content: space-around;
     padding: 10px;
-    .ticket{
+    .ticket {
       background: #fff;
       position: relative;
-      flex:1;
+      flex: 1;
       max-width: 280px;
-      border: .5px solid #ddd;
+      border: 0.5px solid #ddd;
       padding: 15px;
       margin: 10px;
-      .logo{
+      animation: fadeIn 1s ease-in-out;
+      .logo {
         width: 80%;
         margin-bottom: 5px;
       }
-      .code{
+      .code {
         text-align: center;
         margin-bottom: 10px;
         font-size: 16px;
       }
-      .col{
+      .col {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        
       }
-      .title{
+      .title {
         background: $orange;
         color: #fff;
         text-align: center;
         padding: 5px 10px;
         border-radius: 5px;
       }
-      .row{
+      .row {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 5px 0;
-        .info{
+        .info {
           font-size: 18px;
           padding: 8px 0;
         }
-        .green{
+        .green {
           background: $green;
         }
       }
-      .mynumber{
+      .mynumber {
         background: $primary;
         margin: 10px 0;
         display: flex;
@@ -186,7 +188,7 @@ html {
         padding: 15px 8px;
         box-sizing: border-box;
         border-radius: 5px;
-        .number{
+        .number {
           background: #fff;
           border-radius: 3px;
           padding: 10px 8px;
@@ -195,56 +197,57 @@ html {
           font-weight: bold;
         }
       }
-      .unicode{
+      .unicode {
         padding: 30px 0;
-        background: url('./assets/img/lottodemo-06.png');
+        background: url("./assets/img/lottodemo-06.png");
         background-size: contain;
         background-repeat: no-repeat;
       }
-      &:after{
-        content: '';
+      &:after {
+        content: "";
         position: absolute;
         width: 100%;
         height: 50px;
         bottom: -25px;
         left: 0;
-        background: url('./assets/img/lottodemo-07.png');
+        background: url("./assets/img/lottodemo-07.png");
         background-size: cover;
         background-repeat: no-repeat;
       }
     }
-    .result{
+    .result {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      flex:2;
+      flex: 2;
       max-width: 480px;
       margin: 10px;
-      .display{
+      animation: fadeIn 1s ease-in-out;
+      .display {
         background: $primary;
         padding: 10px;
         border-radius: 5px;
         display: flex;
         justify-content: space-around;
-        .number{
+        .number {
           background: #fff;
           padding: 15px 5px;
           margin: 5px;
           border-radius: 3px;
           font-size: 46px;
           font-weight: 900;
-          &:last-child{
+          &:last-child {
             color: $orange;
           }
         }
       }
-      .output{
+      .output {
         display: flex;
         margin: 10px 0;
-        .period{
+        .period {
           padding: 10px 0;
           margin-right: 10px;
-          p{
+          p {
             margin: 0;
             padding: 5px;
             color: #fff;
@@ -253,64 +256,64 @@ html {
             letter-spacing: 1px;
             background: $orange;
           }
-          img{
+          img {
             width: 100%;
             max-width: 120px;
           }
         }
-        .output_number_box{
+        .output_number_box {
           display: flex;
           justify-content: space-around;
           align-items: center;
-          .output_number{
+          .output_number {
             background: $second;
             padding: 12px;
             border-radius: 50%;
             margin: 0 5px;
-            span{
+            span {
               font-weight: 600;
               font-size: 18px;
               line-height: 18px;
               border-bottom: 1px solid #000;
             }
-            &:last-child{
+            &:nth-child(6) {
               background: $orange;
               color: #fff;
-              span{
+              span {
                 border-bottom: 1px solid #fff;
               }
-              
             }
           }
         }
       }
-      .operation{
+      .operation {
         margin: 10px 0;
         display: flex;
-        .item{
+        .item {
           flex: 1;
-          .title{
+          .title {
             font-size: 20px;
             margin-bottom: 15px;
           }
-          .sort,.btn{
-            margin: 10px; 
+          .sort,
+          .btn {
+            margin: 10px;
             display: flex;
             justify-content: space-around;
-            input{
+            input {
               display: none;
-              &:checked + label{
-                &:after{
+              &:checked + label {
+                &:after {
                   background: $third;
                 }
               }
             }
-            label{
+            label {
               cursor: pointer;
               padding: 5px 10px;
               position: relative;
-              &:after{
-                content:'';
+              &:after {
+                content: "";
                 position: absolute;
                 top: 4px;
                 left: -20px;
@@ -321,15 +324,15 @@ html {
               }
             }
           }
-          .btn{
-            *{
+          .btn {
+            * {
               cursor: pointer;
               padding: 5px 20px;
               border-radius: 3px;
               color: #333;
               border: 1px solid #ccc;
-              transition: all .1s;
-              &:hover{
+              transition: all 0.1s;
+              &:hover {
                 border: 1px solid $orange;
                 background: $orange;
                 color: #fff;

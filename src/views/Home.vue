@@ -32,13 +32,12 @@ export default {
   },
   data() {
     return {
-      number: [],
       date: ""
     };
   },
   methods: {
     select(item) {
-      this.$store.dispatch('select' ,item)
+      this.$store.dispatch('userSelect' ,item)
     },
     go() {
       this.$store.dispatch('go')
@@ -52,7 +51,7 @@ export default {
       return this.$store.state.numbers
     },
     selected() {
-      return this.$store.state.selected
+      return this.$store.state.userNumber
     }
   },
   created() {
