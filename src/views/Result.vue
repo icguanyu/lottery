@@ -45,16 +45,19 @@
           </div>
         </div>
         <div class="output">
-          <div class="period">
-            <p>第00000001期</p>
-            <img src="@/assets/img/lottodemo-03.png" alt="">
-          </div>
-          <div class="output_number_box">
-            <div class="output_number" v-for="lotto in resultOrder" :key="lotto">
-              <span>{{lotto}}</span>
+          <div class="title">★ 本期樂透號碼</div>
+          <div class="inner">
+            <div class="period">
+              <p>第00000001期</p>
+              <img src="@/assets/img/lottodemo-03.png" alt="">
             </div>
-            <div class="output_number" v-if="special_number">
-              <span>{{special_number}}</span>
+            <div class="output_number_box">
+              <div class="output_number" v-for="lotto in resultOrder" :key="lotto">
+                <span>{{lotto}}</span>
+              </div>
+              <div class="output_number" v-if="special_number">
+                <span>{{special_number}}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -72,11 +75,26 @@
           <div class="switch item">
             <div class="title">★ 操作</div>
             <div class="btn">
-              <div class="pause">暫停</div>
               <div class="start" @click="goloto()">開獎</div>
             </div>
           </div>
         </div>
+        <div class="congratulation" v-if="special_number">
+          <div v-if="sameNumber.length">
+            <div class="title">★ 中獎號碼：</div>
+            <div class="num_box">
+              <p v-for="num in sameNumber" :key="num">{{ num }}</p>
+            </div>
+            <p>恭喜您中了 {{sameNumber.length}} 個號碼！</p>
+          </div>
+          <div v-else>
+            <p>很遺憾一個都沒中！</p>
+            <div class="turtle">
+              <img src="@/assets/img/Greenkoopa.gif" alt="">
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -180,6 +198,21 @@ export default {
         });
       } else {
         return this.output_result;
+      }
+    },
+    sameNumber() {
+      if(this.special_number){
+        let userNum = this.userSelected.map(item=>item.number)
+        let lottoNum = this.lotto_result.map(item=>item.num) 
+        let allNum = [...userNum,...lottoNum]
+        let same = new Set()
+        var diffrent = new Set();
+        allNum.forEach(item=>{
+          diffrent.has(item) ? same.add(item) : diffrent.add(item);
+        })
+        return [...same]
+      }else{
+        return []
       }
     }
   },
