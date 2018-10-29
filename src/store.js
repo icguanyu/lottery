@@ -12,7 +12,8 @@ export default new vuex.Store({
     isLoading: false,
     numbers: [], // 所有號碼
     userNumber: [], // 使用者選的
-    date: ''
+    date: '',
+    fb_user: ''
   },
   actions: {
     getData (context) {

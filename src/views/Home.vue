@@ -37,25 +37,56 @@ export default {
   },
   methods: {
     select(item) {
-      this.$store.dispatch('userSelect' ,item)
+      this.$store.dispatch("userSelect", item);
     },
     go() {
-      this.$store.dispatch('go')
+      this.$store.dispatch("go");
     },
     reset() {
-      this.$store.dispatch('reset')
+      this.$store.dispatch("reset");
+    },
+    checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        if (response.status === "connected") {
+          //如果狀態為登入,就不用登入嘛
+          console.log("你已經登入囉");
+        } else {
+          login();
+        }
+      });
     }
   },
   computed: {
-    numbers(){
-      return this.$store.state.numbers
+    numbers() {
+      return this.$store.state.numbers;
     },
     selected() {
-      return this.$store.state.userNumber
+      return this.$store.state.userNumber;
     }
   },
   created() {
-    this.$store.dispatch('getData')
+    this.$store.dispatch("getData");
+  },
+  mounted() {
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: "488858244949249",
+        cookie: true,
+        xfbml: true,
+        version: "v3.1"
+      });
+      FB.AppEvents.logPageView();
+    };
+    (function(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/zh_TW/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+    this.checkLoginState()
   }
 };
 </script>
