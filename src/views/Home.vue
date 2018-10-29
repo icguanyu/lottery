@@ -46,10 +46,10 @@ export default {
   },
   methods: {
     select(item) {
-      if(this.userData){
+      if(userData.name){
         this.$store.dispatch("userSelect", item);
       }else{
-        this.checkLoginState();
+        this.login();
       }
     },
     go() {
@@ -57,17 +57,6 @@ export default {
     },
     reset() {
       this.$store.dispatch("reset");
-    },
-    checkLoginState() {
-      const vm = this
-      FB.getLoginStatus(function(response) {
-        if (response.status === "connected") {
-          //如果狀態為登入,就不用登入嘛
-          console.log("你已經登入囉");
-        } else {
-          vm.login();
-        }
-      });
     },
     login() {
       const vm = this
