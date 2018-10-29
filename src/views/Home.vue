@@ -95,6 +95,7 @@ export default {
       FB.logout(function (response) {
         console.log(response)
         vm.$store.dispatch('getUser')
+        vm.reset()
       });
     }
   },

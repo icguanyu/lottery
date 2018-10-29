@@ -28,8 +28,8 @@
         </div>
         <div class="col">
           <div class="row">
-            <div class="title green">★ 經銷商 ★</div>
-            <div class="info">00000110</div>
+            <div class="title green">★ 持有人 ★</div>
+            <div class="info">{{ userData.name }}</div>
           </div>
           <div class="row">
             <div class="title green">★ 投注機 ★</div>
@@ -215,6 +215,9 @@ export default {
       }else{
         return []
       }
+    },
+    userData() {
+      return this.$store.state.fb_user;
     }
   },
   created() {

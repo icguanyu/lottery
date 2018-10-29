@@ -25,6 +25,9 @@ html {
     }
   }
   .login_box{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
     .hello{
       text-align: center;
       margin: 10px;
@@ -43,9 +46,7 @@ html {
       }
     }
     .login{
-      display: flex;
-      justify-content: space-around;
-      
+      margin: 10px auto;
     }
   }
   .card {
@@ -70,6 +71,7 @@ html {
     .title {
       width: 70%;
       margin: 0 auto;
+      position: relative;
       border-bottom: 2px solid #fff;
       img {
         width: 100%;
