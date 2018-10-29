@@ -50,7 +50,7 @@ export default {
       FB.getLoginStatus(function(response) {
         if (response.status === "connected") {
           // 如果狀態為登入,就不用登入嘛,直接選號碼
-          this.$store.dispatch("userSelect", item);
+          vm.$store.dispatch("userSelect", item);
         } else {
           vm.login();
         }
