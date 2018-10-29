@@ -4,6 +4,15 @@
     <div class="logo">
       <img src="@/assets/img/lottodemo-03.png" alt="">
     </div>
+    <div class="login_box">
+      <div class="hello" v-if="userData.name">
+        你好 {{ userData.name }} , 祝您中獎！
+        <div class="btn logout" @click="logout()">登出</div>
+      </div>
+      <div class="login" v-else>
+        <div class="btn signin" @click="login()">使用臉書登入</div>
+      </div>
+    </div>
     <div class="card">
       <div class="shadow"></div>
       <div class="title">
@@ -47,12 +56,13 @@ export default {
       this.$store.dispatch("reset");
     },
     checkLoginState() {
+      const vm = this
       FB.getLoginStatus(function(response) {
         if (response.status === "connected") {
           //如果狀態為登入,就不用登入嘛
           console.log("你已經登入囉");
         } else {
-          this.login();
+          vm.login();
         }
       });
     },
@@ -68,6 +78,7 @@ export default {
                 fields: "id,name,email,picture"
               },
               function(response) {
+                vm.$store.dispatch('getUser',response)
                 console.log(response);
               }
             );
@@ -78,6 +89,13 @@ export default {
           auth_type: "rerequest"
         }
       );
+    },
+    logout() {
+      const vm = this
+      FB.logout(function (response) {
+        console.log(response)
+        vm.$store.dispatch('getUser')
+      });
     }
   },
   computed: {
@@ -86,6 +104,9 @@ export default {
     },
     selected() {
       return this.$store.state.userNumber;
+    },
+    userData() {
+      return this.$store.state.fb_user;
     }
   },
   created() {

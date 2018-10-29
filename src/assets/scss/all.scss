@@ -19,9 +19,33 @@ html {
   margin-top: 40px;
   .logo {
     width: 280px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 20px auto;
     img {
       width: 100%;
+    }
+  }
+  .login_box{
+    .hello{
+      text-align: center;
+      margin: 10px;
+    }
+    .btn{
+      cursor: pointer;
+      display: inline-block;
+      padding: 5px 20px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      transition: all .2s;
+      &:hover{
+        border: none;
+        color: #fff;
+        background: $third;
+      }
+    }
+    .login{
+      display: flex;
+      justify-content: space-around;
+      
     }
   }
   .card {

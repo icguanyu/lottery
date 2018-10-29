@@ -38,6 +38,9 @@ export default new vuex.Store({
       let date = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
       context.commit('DATE', date)
       router.push('/Result')
+    },
+    getUser (context, response) {
+      context.commit('USERDATA',response)
     }
   },
   mutations: {
@@ -72,6 +75,18 @@ export default new vuex.Store({
     },
     DATE (state, payload) {
       state.date = payload
+    },
+    USERDATA (state, payload) {
+      if(payload) {
+        state.fb_user = {
+          'id' : payload.id,
+          'email' : payload.email,
+          'name' : payload.name,
+          'picurl' : payload.picture.data.url
+        }
+      }else{
+        state.fb_user = ''
+      }
     }
   }
 })
