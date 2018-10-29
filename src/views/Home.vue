@@ -104,6 +104,12 @@ export default {
   },
   created() {
     this.$store.dispatch("getData");
+    let u = navigator.userAgent,
+    ua = navigator.userAgent.toLowerCase(),
+    isLineApp = u.indexOf("Line") > -1 // Line 內建瀏覽器
+    if (isLineApp) {
+      alert('請使用safari或Google Chrome開啟')
+    }
   },
   mounted() {
     window.fbAsyncInit = function() {
