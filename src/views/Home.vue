@@ -19,7 +19,7 @@
         <img src="@/assets/img/lottodemo-04.png" alt="">
       </div>
       <div class="numbers">
-        <div v-for="item in numbers" :key="item.number" class="number" :class="{'selected': item.select }" @click="checkLoginState(item)">{{item.number}}</div>
+        <div v-for="item in numbers" :key="item.number" class="number" :class="{'selected': item.select }" @click="select(item)">{{item.number}}</div>
       </div>
       <div class="mynumber">
         您的號碼：<p v-for="item in selected" :key="item.number">{{item.number}}</p>
@@ -45,16 +45,12 @@ export default {
     };
   },
   methods: {
-    checkLoginState(item) {
-      const vm = this
-      FB.getLoginStatus(function(response) {
-        if (response.status === "connected") {
-          // 如果狀態為登入,就不用登入嘛,直接選號碼
-          vm.$store.dispatch("userSelect", item);
-        } else {
-          vm.login();
-        }
-      });
+    select(item) {
+      if(userData){
+        this.$store.dispatch("userSelect", item);
+      }else{
+        this.checkLoginState();
+      }
     },
     go() {
       this.$store.dispatch("go");
@@ -62,11 +58,22 @@ export default {
     reset() {
       this.$store.dispatch("reset");
     },
+    checkLoginState() {
+      const vm = this
+      FB.getLoginStatus(function(response) {
+        if (response.status === "connected") {
+          //如果狀態為登入,就不用登入嘛
+          console.log("你已經登入囉");
+        } else {
+          vm.login();
+        }
+      });
+    },
     login() {
       const vm = this
       FB.login(
         function(response) {
-          // console.log(response);
+          console.log(response);
           if (response.status === "connected") {
             FB.api(
               "/me",
@@ -75,7 +82,7 @@ export default {
               },
               function(response) {
                 vm.$store.dispatch('getUser',response)
-                // console.log(response);
+                console.log(response);
               }
             );
           }
@@ -89,7 +96,7 @@ export default {
     logout() {
       const vm = this
       FB.logout(function (response) {
-        // console.log(response)
+        console.log(response)
         vm.$store.dispatch('getUser')
         vm.reset()
       });
