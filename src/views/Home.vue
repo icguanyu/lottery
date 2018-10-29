@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     select(item) {
+      this.checkLoginState()
       this.$store.dispatch("userSelect", item);
     },
     go() {
@@ -86,7 +87,6 @@ export default {
       js.src = "https://connect.facebook.net/zh_TW/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     })(document, "script", "facebook-jssdk");
-    this.checkLoginState()
   }
 };
 </script>
