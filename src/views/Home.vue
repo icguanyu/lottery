@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     select(item) {
-      this.checkLoginState()
+      this.checkLoginState();
       this.$store.dispatch("userSelect", item);
     },
     go() {
@@ -52,9 +52,32 @@ export default {
           //如果狀態為登入,就不用登入嘛
           console.log("你已經登入囉");
         } else {
-          login();
+          this.login();
         }
       });
+    },
+    login() {
+      const vm = this
+      FB.login(
+        function(response) {
+          console.log(response);
+          if (response.status === "connected") {
+            FB.api(
+              "/me",
+              {
+                fields: "id,name,email,picture"
+              },
+              function(response) {
+                console.log(response);
+              }
+            );
+          }
+        },
+        {
+          scope: "email",
+          auth_type: "rerequest"
+        }
+      );
     }
   },
   computed: {
