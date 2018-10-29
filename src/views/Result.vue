@@ -150,7 +150,7 @@ export default {
       timer = setTimeout(this.lotto, this.randomTimer);
     },
     lotto() {
-      console.log(this.time)
+      // console.log(this.time)
       if (this.time < this.limit_times) { 
         // 如果 this.time 還沒超過 randomTimer 的時間就再次呼叫 goloto()
         this.time++;
