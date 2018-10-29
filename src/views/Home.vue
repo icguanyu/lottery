@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     select(item) {
-      if(userData.name){
+      if(this.userData.name){
         this.$store.dispatch("userSelect", item);
       }else{
         this.login();
